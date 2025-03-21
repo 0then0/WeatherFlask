@@ -20,7 +20,7 @@ This is a simple REST API built with Flask that fetches weather data from the Op
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/weather-app.git
+   git clone https://github.com/0then0/WeatherFlask
    cd weather-app
    ```
 2. Create a virtual environment and activate it:
@@ -50,9 +50,10 @@ Example response:
 
 ```json
 {
-	"location": "San Francisco, USA",
-	"temperature": 15.3,
-	"humidity": 72,
-	"description": "Partly Cloudy"
+	"Coordinates": "Lat: 37.7632°N, Lon: -122.4128°E",
+	"Current apparent temperature": 3.43,
+	"Current temperature": 6.50,
+	"Current weather code": 3,
+	"Current wind speed": 9.69
 }
 ```
