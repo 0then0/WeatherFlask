@@ -9,6 +9,35 @@ from app.config import Config
 
 geolocator = Nominatim(user_agent="WeatherFlask")
 
+WMO_WEATHER_CODES = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Depositing rime fog",
+    51: "Drizzle: Light",
+    53: "Drizzle: Moderate",
+    55: "Drizzle: Dense intensity",
+    61: "Rain: Slight",
+    63: "Rain: Moderate",
+    65: "Rain: Heavy",
+    66: "Freezing Rain: Light",
+    67: "Freezing Rain: Heavy",
+    71: "Snow fall: Slight",
+    73: "Snow fall: Moderate",
+    75: "Snow fall: Heavy",
+    77: "Snow grains",
+    80: "Rain showers: Slight",
+    81: "Rain showers: Moderate",
+    82: "Rain showers: Violent",
+    85: "Snow showers: Slight",
+    86: "Snow showers: Heavy",
+    95: "Thunderstorm: Slight or moderate",
+    96: "Thunderstorm with hail: Slight",
+    99: "Thunderstorm with hail: Heavy",
+}
+
 
 def get_city_name(lat, lon):
     """
@@ -70,21 +99,25 @@ def get_weather(lat, lon):
     current = response.Current()
 
     city_name = get_city_name(lat, lon)
-    current_apparent_temperature = current.Variables(0).Value()
-    current_temperature_2m = current.Variables(1).Value()
+    current_apparent_temperature = f"{round(current.Variables(0).Value(), 1)}°C"
+    current_temperature_2m = f"{round(current.Variables(1).Value(), 1)}°C"
     current_weather_code = current.Variables(2).Value()
-    current_wind_speed_10m = current.Variables(3).Value()
+    weather_description = WMO_WEATHER_CODES.get(
+        current_weather_code, "Unknown weather condition"
+    )
+    current_wind_speed_10m = f"{round(current.Variables(3).Value(), 1)} km/h"
     current_time_iso = current.Time()
     current_time_formatted = datetime.fromtimestamp(current_time_iso).strftime(
         "%Y-%m-%d %H:%M:%S"
     )
 
     return {
-        "Coordinates": f"Lat: {response.Latitude()}°N Lon: {response.Longitude()}°E",
         "City": city_name,
-        "Current temperature": current_temperature_2m,
+        "Coordinates": f"Lat: {round(response.Latitude(), 4)}°N Lon: {round(response.Longitude(), 4)}°E",
         "Current apparent temperature": current_apparent_temperature,
-        "Current wind speed": current_wind_speed_10m,
+        "Current temperature": current_temperature_2m,
         "Current weather code": current_weather_code,
+        "Current wind speed": current_wind_speed_10m,
         "Last update": current_time_formatted,
+        "Weather description": weather_description,
     }

@@ -51,11 +51,12 @@ Example response:
 ```json
 {
 	"City": "San Francisco",
-	"Coordinates": "Lat: 37.7632°N Lon: -122.4128°E",
-	"Current apparent temperature": 6.91,
-	"Current temperature": 8.5,
-	"Current weather code": 0,
-	"Current wind speed": 3.75,
-	"Last update": "2025-03-21 18:30:00"
+	"Coordinates": "Lat: 37.7893°N Lon: -122.422°E",
+	"Current apparent temperature": "7.1°C",
+	"Current temperature": "9.3°C",
+	"Current weather code": 3,
+	"Current wind speed": "10.8 km/h",
+	"Last update": "2025-03-22 14:45:00",
+	"Weather description": "Overcast"
 }
 ```
