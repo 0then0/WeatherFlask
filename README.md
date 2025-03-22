@@ -21,7 +21,7 @@ This is a simple REST API built with Flask that fetches weather data from the Op
 1. Clone the repository:
    ```sh
    git clone https://github.com/0then0/WeatherFlask
-   cd weather-app
+   cd WeatherFlask
    ```
 2. Create a virtual environment and activate it:
    ```sh
