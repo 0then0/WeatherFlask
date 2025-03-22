@@ -27,6 +27,20 @@ def get_city_name(lat, lon):
     return "Location not found"
 
 
+def get_coordinates(city_name):
+    """
+    Fetch latitude and longitude for a given city name using geopy.
+
+    :param city_name: Name of the city
+    :return: Tuple (latitude, longitude) or None if not found
+    """
+
+    location = geolocator.geocode(city_name)
+    if location:
+        return location.latitude, location.longitude
+    return None
+
+
 def get_weather(lat, lon):
     """
     Fetches weather data from Open-Meteo API for given latitude and longitude.
