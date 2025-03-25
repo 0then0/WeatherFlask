@@ -1,6 +1,6 @@
 # Weather API using Flask
 
-This is a simple REST API built with Flask that fetches weather data from the Open-Meteo API and returns it to the user.
+A simple Flask-based REST API that fetches real-time weather forecasts using Open-Meteo. Supports city name or coordinates input, provides human-readable weather descriptions, and returns neatly formatted data with units.
 
 ## Features
 
